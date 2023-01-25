@@ -3,7 +3,8 @@
   "name": "Course Care Notifier",
   "version": "0.0.1",
   "permissions": [
-    "notifications"
+    "notifications",
+    "storage"
   ],
   "background": {
     "service_worker": "background.js"

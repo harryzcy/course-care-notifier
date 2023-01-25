@@ -15,9 +15,10 @@ function playSound() {
   audio.play();
 }
 
-let notificationState = 'initial'
+let notificationState = "initial";
+let soundEnabled = false;
 
-async function pullQueue() {  
+async function pullQueue() {
   const { courseId, eventId } = parseUrl();
   const url = `https://course.care/api/course/${courseId}/event/${eventId}`;
   const response = await fetch(url);
@@ -26,15 +27,27 @@ async function pullQueue() {
   const queued = +data[0].stats.queued; // convert string to number
 
   if (queued > 0) {
-    if (notificationState === 'initial') {
+    if (notificationState === "initial") {
       chrome.runtime.sendMessage({ event: "queue", number: queued });
-      playSound();
-      notificationState = 'sent';
+      if (soundEnabled) {
+        playSound();
+      }
+
+      notificationState = "sent";
     }
   } else {
-    notificationState === 'initial'; // reset
+    notificationState === "initial"; // reset
   }
 }
+
+chrome.storage.local.get(["soundEnabled"], function (result) {
+  soundEnabled = result.soundEnabled;
+});
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local") {
+    soundEnabled = changes.soundEnabled.newValue;
+  }
+});
 
 pullQueue(); // initial pull
 
