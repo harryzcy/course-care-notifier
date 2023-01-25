@@ -1,9 +1,3 @@
-function playSound() {
-  // Use the sound from My Digital Hand
-  const audio = new Audio("https://mydigitalhand.org/sounds/bell.mp3");
-  audio.play();
-}
-
 chrome.runtime.onMessage.addListener(function (request) {
   const event = request.event;
   const number = request.number;
@@ -14,6 +8,6 @@ chrome.runtime.onMessage.addListener(function (request) {
       message,
       iconUrl: "icon.png",
       type: "basic",
-    }, playSound);
+    });
   }
 });
