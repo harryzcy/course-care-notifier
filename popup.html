@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Care Notifier</title>
+    <style>
+      .checkbox-wrapper input {
+        appearance: none;
+        background-color: #dfe1e4;
+        border-radius: 72px;
+        border-style: none;
+        flex-shrink: 0;
+        height: 20px;
+        margin: 0;
+        position: relative;
+        width: 30px;
+        cursor: default;
+      }
+
+      .checkbox-wrapper input::before {
+        bottom: -6px;
+        content: "";
+        left: -6px;
+        position: absolute;
+        right: -6px;
+        top: -6px;
+      }
+
+      .checkbox-wrapper input,
+      .checkbox-wrapper input::after {
+        transition: all 100ms ease-out;
+      }
+
+      .checkbox-wrapper input::after {
+        background-color: #fff;
+        border-radius: 50%;
+        content: "";
+        height: 14px;
+        left: 3px;
+        position: absolute;
+        top: 3px;
+        width: 14px;
+      }
+
+      .checkbox-wrapper input:hover {
+        background-color: #c9cbcd;
+        transition-duration: 0s;
+      }
+
+      .checkbox-wrapper input:checked {
+        background-color: #6e79d6;
+      }
+
+      .checkbox-wrapper input:checked::after {
+        background-color: #fff;
+        left: 13px;
+      }
+
+      .checkbox-wrapper :focus:not(.focus-visible) {
+        outline: 0;
+      }
+
+      .checkbox-wrapper input:checked:hover {
+        background-color: #535db3;
+      }
+    </style>
+  </head>
+  <body style="padding: 4px;">
+    <div style="width: 80px; display: flex; align-items: center; justify-content: space-between;">
+      <span style="margin-right: 8px;">Enable sound</span>
+      <div class="checkbox-wrapper">
+        <input type="checkbox" />
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
